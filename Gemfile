@@ -9,6 +9,8 @@ gem 'rails', '~> 6.0', '>= 6.0.3.4'
 
 gem "webpacker"
 
+gem 'nokogiri', '~> 1.11', '>= 1.11.1'
+
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
