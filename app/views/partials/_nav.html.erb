@@ -1,0 +1,102 @@
+
+    <nav>
+      <div class="right valign-wrapper  black-text hide-on-med-and-down">
+           <ul style="display: inline-flex;">
+              <% if user_signed_in? %>
+                  <li> <%= link_to destroy_user_session_path, method: :delete, class:" btn-floating fucsia_ruta" do  %>
+                    <i class="material-icons white-text tooltipped" data-position="left" data-tooltip="Cerrar sesion" ">close</i>
+                  <% end %>
+                  </li>
+                  <% else %>
+                  <li><h6>Inicia sesión</h6></li>
+
+                  <li> <%= link_to new_user_session_path, class:" btn-floating morado_ruta" do  %>
+                    <i class="material-icons white-text tooltipped" data-position="left" data-tooltip="Iniciar sesión">person</i>
+                    <% end %>
+                  </li>
+              <% end %>
+           </ul>
+      </div>
+      <div class="container right">
+        <div class="row">
+          <div class="nav-wrapper valign-wrapper">
+            <div class="hide-on-small-and-down">
+              <a href="https://www.rutanio.com/"><img src="/images/logo.png" class="logo"></a>
+            </div>
+
+          <div class="col s12 m12 l12 ">
+            <ul class="hide-on-med-and-down valign-wrapper">
+                <li><a class="menu_inicio " href="https://www.rutanio.com/">Home</a></li>
+                <li>
+                  <div class="input-field col s12 valign-wrapper">
+                    <!-- Dropdown Trigger -->
+                    <a class='dropdown-trigger menu_inicio valign-wrapper' href='#' data-target='dropdown1'>Herramientas <i class="material-icons ">arrow_drop_down</i></a>
+                      <!-- Dropdown Structure -->
+                      <ul id='dropdown1' class='dropdown-content'>
+                        <li><a  value="1" target="_blank" href="https://www.rutanio.com/herramientas">Herramientas</a></li>
+                        <li><a target="_blank" href="https://www.rutanio.com/faq">Preguntas</a></li>
+                      </ul>
+
+                  </div>
+                </li>
+                <li><%= link_to "Mercado", root_path ,class:"menu_inicio"%></li>
+                <li><a class="menu_inicio" href="https://www.rutanio.com/novedades">Novedades</a></li>
+
+                <li>
+                  <div class="input-field col s12 valign-wrapper">
+                    <!-- Dropdown Trigger -->
+                    <a class='dropdown-trigger menu_inicio valign-wrapper' href='#' data-target='dropdown2'>Nosotros <i class="material-icons ">arrow_drop_down</i></a>
+                      <!-- Dropdown Structure -->
+                      <ul id='dropdown2' class='dropdown-content'>
+                        <li><a  value="1" target="_blank" href="https://www.rutanio.com/nosotros">Nosotros</a></li>
+                        <li><a target="_blank" href="https://www.rutanio.com/alianzas">Alianzas</a></li>
+                        <li><a target="_blank" href="https://www.rutanio.com/embajadores">Embajadores</a></li>
+                        <li><a target="_blank" href="https://www.rutanio.com/nuestro-equipo">Equipo</a></li>
+                      </ul>
+
+                  </div>
+                </li>
+            </ul>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+
+    </nav>
+
+
+
+
+
+
+
+
+<div class="fixed-action-btn  valign-wrapper ">
+  <% if user_signed_in? %>
+
+  <% else %>
+  <div class="midiv ">
+      <h6 class="morado_font ">
+        <%= link_to "Regístrate", new_user_registration_path %>
+      </h6>
+
+
+  </div>
+  <div class="midiv2" style="display:none;">
+
+      <%= link_to "Regístrate", new_user_registration_path , class:"fucsia_font saludo"%>
+  </div>
+
+  <% end %>
+
+  <br>
+
+
+
+</div>

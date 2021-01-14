@@ -1,0 +1,206 @@
+<br>
+<% if user_signed_in? && @service.user.email == current_user.email %>
+
+<div class="container">
+    <div class="row center">
+      <h3 class="fucsia_font center"> RESPUESTAS </h3>
+      <ul class="collection">
+          <% @service.requests.each do |request| %>
+         <li class="collection-item avatar">
+           <span class="title left"><%= request.user.email %></span>
+           <p><%= request.mensaje %>
+           </p>
+          <h4 class=" secondary-content ">
+            <% if user_signed_in? && current_user == request.user %>
+              <%= link_to "Eliminar ", [@service, request], data:{confirm: "Estas seguro que deseas eliminar? ", :method => :delete}, class:"btn btn-outline-danger morado_ruta"%>
+            <% end %>
+          </h4>
+         </li>
+      <% end %>
+       </ul>
+    </div>
+
+</div>
+
+<% end %>
+<br>
+<br>
+<div class="container z-depth-2" style="padding:2%;">
+  <div class="row">
+    <div class="col s12 m6 l6 left">
+        <h3 class="fucsia_font center"><%= @service.name %></h3>
+        <% if @service.image_serv.attached? %>
+                <%= image_tag @service.image_serv  , class:"portadaServicio materialboxed" %>
+        <% else %>
+                <img src="/images/nn.png" alt=""  class="center fondo-ruta2">
+        <% end %>
+    </div>
+    <div class="col s12 m6 l6 right">
+      <h2 class="morado_font">Información</h2>
+      <%= @service.information %>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col s12 m12 l12 left">
+        <% @service.skills.each do |skill| %>
+            <%  skill.color_tag %>
+          <div class="chip white-text" style=" background: <%=  skill.color_tag %> !important;" >
+            <%=  skill.name.truncate(20) %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row ">
+    <div class="col s12 m6 l6">
+    <div class="left">
+      <ul class="imagenes_carta">
+        <li class="morado_font">
+          <% if !@service.valid_until.nil? %>
+              <i class="material-icons">update</i>
+              <%= @service.valid_until.strftime("%d-%b-%Y")  %>
+              <span>vencimiento</span>
+          <% end %>
+        </li>
+        <li class="fucsia_font">
+           <% if !@service.precio.nil? %>
+          <img src="/images/ruta.png" alt=""  class="iconos_market">
+               <%= number_with_delimiter(@service.precio.round, :delimiter => ',') %>
+               RUTA
+
+           <% end %>
+        </li>
+        <li class="morado_font">
+           <% if !@service.exos_amount.nil? %>
+           <img src="/images/exos.png" alt=""  class="iconos_market"> <%= number_with_delimiter(@service.exos_amount.round , :delimiter => ',')%>
+              EXOS
+           <% end %>
+        </li>
+        <li class="morado_font">
+           <% if !@service.currency_sugest.nil? %>
+          $ <%= number_with_delimiter(@service.currency_sugest, :delimiter => ',')%>
+           <% end %>
+        </li>
+
+
+        <li class="morado_font">
+           <% if !@service.exos_amount.nil? %>
+            Horas estimadas:  <%= @service.horas %>
+          <% end %>
+        </li>
+
+      </ul>
+
+      <br>
+
+        <br>
+    </div>
+
+  </div>
+
+  <div class="col s12 m6 l6 ">
+   <blockquote>
+    <h2 class="fucsia_font">Restricciones o Condiciones</h2>
+    <p>
+        <%= @service.aditional_info %>
+    </p>
+   </blockquote>
+
+  </div>
+
+
+  </div>
+
+
+  <div class="row ">
+
+    <div class="col s12 m6 l6">
+      <h2 class="morado_font center">Información de Contacto</h2>
+     <ul>
+         <li>
+           <div>
+             <i class="material-icons morado_font">contact_mail</i>  Email - <%= @service.mail_servicio %></div>
+         </li>
+         <li>
+           <div>
+             <i class="material-icons morado_font">phone</i>   Whatsapp - <%= @service.wpp %></div>
+         </li>
+         <li>
+           <div>
+             <i class="material-icons morado_font">router</i>   Sitio Web - <%= @service.web %></div>
+         </li>
+      </ul>
+
+    </div>
+    <div class="col s12 m6 l6 ">
+      <p>
+        Conoces a alguien que le pueda interesar <%= @service.name   %> ?
+      </p>
+      <br>
+      <div class="row comparte valign-wrapper ">
+        <h2 class="morado_font">Comparte: </h2>
+         <%= social_share_button_tag(@service.name, :url => service_url(@service), :image =>  "http://foo.bar/images/a.jpg", desc: @service.name)%>
+      </div>
+
+    </div>
+
+</div>
+
+
+  <div class=" col s12 m12 l12">
+
+   <br>
+
+              <!-- Modal Structure -->
+
+              <div id="cajaComentar" class="modal">
+
+                <div class="modal-content center">
+                 <%= render "requests/form"%>
+
+                </div>
+
+                <div class="modal-footer">
+
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat ">Salir</a>
+
+                </div>
+
+              </div>
+
+
+
+
+</div>
+<div class="row">
+  <div class="col s12 m6 l6">
+    <% if user_signed_in? %>
+    <!-- Modal Trigger -->
+        <div class="row center">
+        <a class="waves-effect waves-light btn-large  modal-trigger fucsia_ruta pulse" href="#cajaComentar">Contactar</a>
+        </div>
+        <% else %>
+        <div class="row center">
+        <%= link_to "Contactar" , new_user_session_path,  class:"waves-effect waves-light btn-large  modal-trigger fucsia_ruta pulse"   %>
+        </div>
+    <% end %>
+  </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+      <br>
+
+
+
+
+    </div>

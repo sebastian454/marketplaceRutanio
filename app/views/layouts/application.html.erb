@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-167861002-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-167861002-1');
+</script>
+
+
+    <title>Rutanio marketplace - Beta</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Quantico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Sans:regular,italic,500,700%7CWork+Sans:100,200,300,regular,500,600" media="all">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <link rel="shortcut icon" type="imagen.ico" href="/images/favicon.ico">
+    <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+  </head>
+
+
+  <body>
+    <header>
+
+    </header>
+    <br>
+
+    <% if user_signed_in? %>
+      <div class="row">
+
+      <div class="col  m4 l2">
+        <%= render "partials/panel" %>
+      </div>
+        <div class="col  m8 l10">
+          <%= render "partials/nav" %>
+          <%= render "partials/notificaciones" %>
+          <%= yield %>
+        </div>
+
+      <% else %>
+        <%= render "partials/nav" %>
+        <%= render "partials/notificaciones" %>
+        <%= yield %>
+        <%= render "partials/pie" %>
+
+      </div>
+    <% end %>
+
+
+        <!-- Compiled and minified JavaScript -->
+        <script defer  src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>
